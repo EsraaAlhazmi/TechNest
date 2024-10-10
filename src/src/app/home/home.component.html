@@ -1,0 +1,8 @@
+<div class="container mt-5">
+    <h1>Products</h1>
+    
+    <app-categories (categorySelected)="updateCategory($event)"></app-categories> 
+  
+    <app-list [selectedCategory]="selectedCategory"></app-list> 
+  </div>
+  

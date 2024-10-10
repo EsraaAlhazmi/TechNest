@@ -1,0 +1,11 @@
+
+<div class="categories mt-3">
+  
+    <button 
+      *ngFor="let category of categories" 
+      class="btn btn-outline-primary mx-2" 
+      (click)="selectCategory(category)">
+      {{ category }}
+    </button>
+  </div>
+  

@@ -1,0 +1,65 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header text-center bg-dark text-white">
+            <h1 class="text-uppercase mb-0">Invoice</h1>
+          </div>
+          <div class="card-body">
+            <div class="row mb-4 mt-">
+              <div class="col-md-4 mt-3">
+                <div class="billed"><strong>Date:</strong>
+                  <span class="ml-1">{{ currentDate }}</span>
+                </div>
+                <div class="billed"><strong>Order ID:</strong>
+                  <span class="ml-1">{{ orderId }}</span>
+                </div>
+              </div>
+              <div class="col-md-4 ">
+                <h5><strong>Buyer Information</strong></h5>
+                <div><strong>Name:</strong> {{ userInfo.fullName }}</div>
+                <div><strong>Location:</strong> {{ userInfo.address }}</div>
+                <div><strong>Email:</strong> {{ userInfo.email }}</div>
+                <div><strong>Phone:</strong> {{ userInfo.phone }}</div>
+              </div>
+            </div>
+  
+            <!-- Product Table -->
+            <div class="mt-5">
+              <h5 class="text-center mb-4">Product Details</h5>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of cartItems">
+                      <td>{{ item.name }}</td>
+                      <td>{{ item.quantity }}</td>
+                      <td>{{ item.price | currency }}</td>
+                      <td>{{ item.price * item.quantity | currency }}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-right"><strong>Total</strong></td>
+                      <td><strong>{{ totalAmount | currency }}</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+  
+            <!-- Pay Now Button -->
+            <div class="text-right mb-3">
+              <button class="btn btn-success btn-lg" type="button">Pay Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,86 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="cartItems.length > 0; else emptyCart">
+        <div class="card shadow">
+          <div class="card-header text-center bg-dark text-white">
+            <h1 class="text-uppercase mb-0">Your Cart</h1>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-centered mb-0 table-nowrap">
+                <thead class="table-dark">
+                  <tr>
+                    <th style="width: 150px;">Item</th>
+                    <th>Item Name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cartItems">
+                    <td>
+                      <img [src]="item.image" alt="" style="width: 100px; height: 100px;">
+                    </td>
+                    <td>
+                      <h5 class="card-title">{{ item.name }}</h5>
+                    </td>
+                    <td>
+                      <p class="card-text">{{ item.category }}</p>
+                    </td>
+                    <td>
+                      <input type="number" [(ngModel)]="item.quantity" min="1" class="form-control"
+                        style="width: 100px;">
+                    </td>
+                    <td>
+                      <h5>{{ item.price | currency }}</h5>
+                    </td>
+                    <td>
+                      <button class="btn btn-danger" (click)="removeFromCart(item.id)">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-sm-6">
+                <a routerLink="/" class="btn btn-link fw-semibold" style="color: blue;">
+                  <i class="mdi mdi-arrow-left"></i> Continue Shopping
+                </a>
+              </div>
+              <div class="col-sm-6 text-end">
+                <button class="btn btn-success" (click)="checkout()">Check Out</button>
+              </div>
+            </div>
+
+            <div class="row pt-3">
+              <div class="col text-end">
+                <h4>Total: {{ getTotalPrice() | currency }}</h4>
+                <h5>Items: {{ getTotalItems() }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #emptyCart>
+        <div class="card shadow text-center">
+          <div class="card-header text-center bg-dark text-white">
+            <h1 class="text-uppercase mb-0">Your Cart</h1>
+          </div>
+          <div class="card-body">
+            <h4>The cart is empty.</h4>
+            <div class="mt-4">
+              <a routerLink="/" class="btn btn-link fw-semibold" style="color: blue;">
+                <i class="mdi mdi-arrow-left"></i> Continue Shopping
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
